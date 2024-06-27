@@ -156,3 +156,37 @@ config system interface
         set snmp-index 8
     next
 end
+Firewall1 # sh firewall policy 
+config firewall policy
+    edit 1
+        set name "ICMP"
+        set uuid dc5a4818-34b6-51ef-bbe9-029c736268e2
+        set srcintf "port2"
+        set dstintf "port3"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "PING" "ALL_ICMP" "TRACEROUTE"
+        set logtraffic all
+        set logtraffic-start enable
+        set capture-packet enable
+        set auto-asic-offload disable
+        set nat enable
+    next
+    edit 2
+        set name "ICMP2"
+        set uuid 08461bc8-34b7-51ef-0dae-be9f845658da
+        set srcintf "port3"
+        set dstintf "port2"
+        set action accept
+        set srcaddr "all"
+        set dstaddr "all"
+        set schedule "always"
+        set service "PING" "ALL_ICMP" "TRACEROUTE"
+        set logtraffic all
+        set logtraffic-start enable
+        set auto-asic-offload disable
+        set nat enable
+    next
+end
